@@ -1,5 +1,7 @@
 ﻿using AudioSender.Record;
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Platform.Storage;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -16,7 +18,7 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private string _saveFolderPath = Assembly.GetExecutingAssembly().Location;
     [ObservableProperty]
-    private string _saveFileName = DateTime.Now.ToString();
+    private string _saveFileName = DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss");
     [ObservableProperty]
     private List<string>? _fileFormats = new()
     {
@@ -27,17 +29,6 @@ public partial class MainViewModel : ViewModelBase
     private string _selectFormat = "MP3";
 
     private AudioRecorder? _recorder;
-    private UserControl? _userControl;
-
-    public MainViewModel()
-    {
-
-    }
-
-    public MainViewModel(UserControl view)
-    {
-        _userControl = view;
-    }
 
     [RelayCommand]
     public void StartRecordCommand()
@@ -46,7 +37,7 @@ public partial class MainViewModel : ViewModelBase
         {
             RecordStatus = "Stop Record";
             _recorder = new AudioRecorder();
-            switch (_selectFormat)
+            switch (SelectFormat)
             {
                 case "WAV":
                     _recorder.StartRecording(SaveFolderPath, SaveFileName, AudioFileTypes.WAV);
@@ -69,7 +60,8 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     public async void SelectFolder()
     {
-        var topLevel = TopLevel.GetTopLevel(_userControl);
+        var window = App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
+        var topLevel = TopLevel.GetTopLevel(window.MainWindow.Content as Visual);
         FolderPickerOpenOptions options = new FolderPickerOpenOptions() { AllowMultiple = false };
         var folder = await topLevel.StorageProvider.OpenFolderPickerAsync(options);
 
@@ -79,8 +71,3 @@ public partial class MainViewModel : ViewModelBase
         }
     }
 }
-
-
-
-
-//IClassicDesktopStyleApplicationLifetime w = App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;

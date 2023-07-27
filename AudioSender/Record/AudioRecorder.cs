@@ -10,8 +10,6 @@ namespace AudioSender.Record
         private WaveFileWriter _writer;
         private LameMP3FileWriter _writerMP3;
 
-       
-
         public void StartRecording(string outputFolder, string outputfileName, AudioFileTypes audioFileTypes = AudioFileTypes.WAV)
         {
             if (!Directory.Exists(outputFolder))

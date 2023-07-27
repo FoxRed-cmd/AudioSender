@@ -8,6 +8,7 @@
   
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
+    <AvaloniaResource Include="Assets\Fonts\Manrope-Light.ttf" />
   </ItemGroup>
 
   <ItemGroup>

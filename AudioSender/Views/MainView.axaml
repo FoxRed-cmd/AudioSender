@@ -12,7 +12,7 @@
 
 	
 	<StackPanel Orientation="Vertical" Margin="10">
-		<Label Content="Record system sound:"/>
+		<Label Content="Record system sound:" FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 		<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
 			<StackPanel Orientation="Vertical" Margin="10">
 				<Grid ShowGridLines="False">
@@ -28,23 +28,29 @@
 						<ColumnDefinition Width="30"></ColumnDefinition>
 					</Grid.ColumnDefinitions>
 
-					<Label Grid.Row="0" Grid.Column="0" Content="File Name:" Foreground="Gray"/>
-					<TextBox Grid.Row="1" Grid.Column="0" Margin="0 0 10 10" Text="{Binding SaveFileName}"/>
-					<Label Grid.Row="0" Grid.Column="1" Content="Format:" Foreground="Gray"/>
+					<Label Grid.Row="0" Grid.Column="0" Content="File Name:" Foreground="Gray"
+						   FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
+					<TextBox Grid.Row="1" Grid.Column="0" Margin="0 0 10 10" Text="{Binding SaveFileName}"
+							 FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
+					<Label Grid.Row="0" Grid.Column="1" Content="Format:" Foreground="Gray"
+						   FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 					<ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FileFormats}"
-							  SelectedValue="{Binding SelectFormat}" Width="115"/>
+							  SelectedValue="{Binding SelectFormat}" Width="115"
+							  FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 
-					<Label Grid.Row="2" Grid.Column="0" Content="Save Folder Path:" Foreground="Gray"/>
-					<TextBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0 0 10 10" Text="{Binding SaveFolderPath}"/>
+					<Label Grid.Row="2" Grid.Column="0" Content="Save Folder Path:" Foreground="Gray"
+						   FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
+					<TextBox Grid.Row="3" Grid.ColumnSpan="2" Margin="0 0 10 10" Text="{Binding SaveFolderPath}"
+							 FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 					<Button Grid.Row="3" Grid.Column="2"
-							Margin="0 0 0 10" Content="..."
+							Margin="0 0 0 10" Content="..." FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"
 							Command="{Binding SelectFolderCommand}"/>
 				</Grid>
 				<Button HorizontalAlignment="Right" Content="{Binding RecordStatus}"
-						Command="{Binding StartRecordCommand}"/>
+						Command="{Binding StartRecordCommand}" FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 			</StackPanel>
 		</Border>
-		<Label Content="Send audio to another device:"/>
+		<Label Content="Send audio to another device:" FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 		<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
 			<StackPanel Orientation="Vertical" Margin="10">
 				

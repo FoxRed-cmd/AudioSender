@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioSender", "AudioSender\AudioSender.csproj", "{23938E25-A9C5-4B11-8D7E-1808AB558FCB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AudioSender.Desktop", "AudioSender.Desktop\AudioSender.Desktop.csproj", "{0AFABD35-3DD2-47AB-8544-0EE9AC47A03E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23938E25-A9C5-4B11-8D7E-1808AB558FCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23938E25-A9C5-4B11-8D7E-1808AB558FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23938E25-A9C5-4B11-8D7E-1808AB558FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23938E25-A9C5-4B11-8D7E-1808AB558FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AFABD35-3DD2-47AB-8544-0EE9AC47A03E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AFABD35-3DD2-47AB-8544-0EE9AC47A03E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AFABD35-3DD2-47AB-8544-0EE9AC47A03E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AFABD35-3DD2-47AB-8544-0EE9AC47A03E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D73C341B-57CF-4E74-AAC8-03C8B4990C91}
+	EndGlobalSection
+EndGlobal

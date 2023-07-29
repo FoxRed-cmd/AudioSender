@@ -7,14 +7,17 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace AudioSender.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
+    #region propertys and fields
     [ObservableProperty]
-    private string _recordStatus = "Start Record";
+    private string _recordStatus = "Start Recording";
     [ObservableProperty]
     private string _saveFolderPath = Assembly.GetExecutingAssembly().Location;
     [ObservableProperty]
@@ -28,14 +31,31 @@ public partial class MainViewModel : ViewModelBase
     [ObservableProperty]
     private string _selectFormat = "MP3";
 
-    private AudioRecorder? _recorder;
+    [ObservableProperty]
+    private string _sendStatus = "Start Sending";
+    [ObservableProperty]
+    private string _ipAddress = string.Empty;
+    [ObservableProperty]
+    private string _port = string.Empty;
+    [ObservableProperty]
+    private bool _isValidConnection;
 
+    private AudioRecorder? _recorder;
+    #endregion
+
+    #region responding to property changes
+    partial void OnIpAddressChanged(string value) => IsValidConnection = IsValidIpAndPort();
+
+    partial void OnPortChanged(string value) => IsValidConnection = IsValidIpAndPort();
+    #endregion
+
+    #region commands
     [RelayCommand]
-    public void StartRecordCommand()
+    public void StartRecordingCommand()
     {
-        if (RecordStatus == "Start Record")
+        if (RecordStatus == "Start Recording")
         {
-            RecordStatus = "Stop Record";
+            RecordStatus = "Stop Recording";
             _recorder = new AudioRecorder();
             switch (SelectFormat)
             {
@@ -53,12 +73,28 @@ public partial class MainViewModel : ViewModelBase
         else
         {
             _recorder?.StopRecording();
-            RecordStatus = "Start Record";
+            RecordStatus = "Start Recording";
         }
     }
 
     [RelayCommand]
-    public async void SelectFolder()
+    public void StartSendingCommand()
+    {
+        if (SendStatus == "Start Sending")
+        {
+            SendStatus = "Stop Sending";
+            _recorder = new AudioRecorder();
+            _recorder.StartSendingToAnotherDevice(IPAddress.Parse(IpAddress), int.Parse(Port));
+        }
+        else
+        {
+            SendStatus = "Start Sending";
+            _recorder?.StopRecording();
+        }
+    }
+
+    [RelayCommand]
+    public async void SelectFolderCommand()
     {
         var window = App.Current.ApplicationLifetime as IClassicDesktopStyleApplicationLifetime;
         var topLevel = TopLevel.GetTopLevel(window.MainWindow.Content as Visual);
@@ -70,4 +106,17 @@ public partial class MainViewModel : ViewModelBase
             SaveFolderPath = folder[0].Path.LocalPath;
         }
     }
+    #endregion
+
+    #region private methods
+    private bool IsValidIpAndPort()
+    {
+        if (IpAddress is null || IpAddress == string.Empty || Port is null || Port == string.Empty)
+            return false;
+
+        string pattern = @"^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$";
+
+        return Regex.IsMatch(IpAddress, pattern) && IPAddress.TryParse(IpAddress, out _) && int.TryParse(Port, out _);
+    }
+    #endregion
 }

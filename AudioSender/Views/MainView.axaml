@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:AudioSender.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="350"
+             mc:Ignorable="d" d:DesignWidth="380" d:DesignHeight="450"
              x:Class="AudioSender.Views.MainView"
              x:DataType="vm:MainViewModel" >
 	<Design.DataContext>
@@ -47,13 +47,36 @@
 							Command="{Binding SelectFolderCommand}"/>
 				</Grid>
 				<Button HorizontalAlignment="Right" Content="{Binding RecordStatus}"
-						Command="{Binding StartRecordCommand}" FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
+						Command="{Binding StartRecordingCommand}"
+						FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"
+						HotKey="Ctrl+R"/>
 			</StackPanel>
 		</Border>
 		<Label Content="Send audio to another device:" FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
 		<Border BorderBrush="Gray" BorderThickness="1" CornerRadius="10">
 			<StackPanel Orientation="Vertical" Margin="10">
-				
+				<Grid ShowGridLines="False">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<Label Content="IP Address:" Foreground="Gray" Grid.Row="0"
+						   FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
+					<TextBox Grid.Row="1" Watermark="0.0.0.0"
+							 FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"
+							 Text="{Binding IpAddress}"/>
+					<Label Content="Port:" Foreground="Gray" Grid.Row="2"
+						   FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"/>
+					<TextBox Grid.Row="3" 
+							 FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"
+							 Text="{Binding Port}"/>
+				</Grid>
+				<Button Margin="0 10 0 0" HorizontalAlignment="Right"
+						FontFamily="avares://MyAssembly/Assets/Fonts/Manrope-Light.ttf"
+						Content="{Binding SendStatus}" Command="{Binding StartSendingCommand}"
+						HotKey="Ctrl+S" IsEnabled="{Binding IsValidConnection}"/>
 			</StackPanel>
 		</Border>
 	</StackPanel>
